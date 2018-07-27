@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="phag_responsive_content_injector.view_dir">
+            %phag_responsive_content_injector.plugin_dir%/Resources/views
+        </parameter>
+    </parameters>
+
+    <services>
+        <service id="phag_responsive_content_injector.subscriber.frontend"
+                 class="PhagResponsiveContentInjector\Subscriber\Frontend">
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <service id="phag_responsive_content_injector.subscriber.backend"
+                 class="PhagResponsiveContentInjector\Subscriber\Backend">
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <service id="phag_responsive_content_injector.subscriber.controller_path"
+                 class="PhagResponsiveContentInjector\Subscriber\ControllerPath">
+            <argument type="service" id="service_container" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <!--<service id="phag_responsive_content_injector.subscriber.search_bundle"
+        class="PhagResponsiveContentInjector\Subscriber\SearchBundle">-->
+            <!--<tag name="shopware.event_subscriber" />-->
+            <!--<argument type="service" id="service_container"></argument>-->
+        <!--</service>-->
+
+        <!--<service id="phag_responsive_content_injector.random_sorting.random_sorting"
+        class="PhagResponsiveContentInjector\Components\SearchBundleDBAL\Sorting\SortingHandler">-->
+            <!--<tag name="sorting_handler_dbal"></tag>-->
+        <!--</service>-->
+
+        <service id="phag_responsive_content_injector.subscriber.template"
+                 class="PhagResponsiveContentInjector\Subscriber\TemplateRegistration">
+            <argument type="string">%phag_responsive_content_injector.plugin_dir%</argument>
+            <argument type="service" id="template"/>
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <!--<service id="phag_responsive_content_injector.subscriber.api_subscriber"-->
+                 <!--class="PhagResponsiveContentInjector\Subscriber\ApiSubscriber">-->
+            <!--<argument id="service_container" type="service" />-->
+            <!--<tag name="shopware.event_subscriber" />-->
+        <!--</service>-->
+
+        <service id="phag_responsive_content_injector.commands._phag_responsive_content_injector"
+                 class="PhagResponsiveContentInjector\Commands\PhagResponsiveContentInjector">
+            <tag name="console.command" />
+        </service>
+
+
+    </services>
+</container>

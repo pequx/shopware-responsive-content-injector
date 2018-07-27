@@ -1,0 +1,15 @@
+{
+    "name": "perfecthair/phag-responsive-content-injector",
+    "type": "shopware-plugin",
+    "description": "Reponsive content injector for PHAG.",
+    "license": "Proprietary",
+    "extra": {
+        "installer-name": "PhagResponsiveContentInjector"
+    },
+    "require-dev": {
+        "shopware/plugin-dev-tools": "master-dev"
+    },
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/shopwareLabs/plugin-dev-tools" }
+    ]
+}

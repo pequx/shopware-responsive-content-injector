@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+
+    <elements>
+        <element>
+            <name>pictureHashTag</name>
+            <label lang="de">WYSWIG-Editor Hashtag für Bild</label>
+            <label lang="en">WYSWIG-Editor hashtag for picture</label>
+            <value>## Bild</value>
+            <description lang="de">Hastag (ein String), der im Backend-Editor verwendet wird, um den Anfang der Bildsammlung zu markieren.</description>
+            <description lang="en">Hastag (a string) used in backend visual editor in order to mark the beginning of picture collection.</description>
+        </element>
+
+        <element>
+            <name>productHashTag</name>
+            <label lang="de">WYSWIG-Editor Hashtag für Artikel</label>
+            <label lang="en">WYSWIG-Editor hashtag for product</label>
+                <value>## Artikel</value>
+            <description lang="de">Hastag (ein String), der im Backend-Editor verwendet wird, um den Anfang der Artikelsammlung zu markieren.</description>
+            <description lang="en">Hastag (a string) used in backend visual editor in order to mark the beginning of article collection.</description>
+        </element>
+
+        <!--<element>-->
+            <!--<name>commentHashTag</name>-->
+            <!--<label lang="de">Backend-Editor Hashtag für Kommentar</label>-->
+            <!--<label lang="en">Backend editor hashtag for comment</label>-->
+            <!--<value>## Kommentar</value>-->
+            <!--<description lang="de">Hastag (ein String), der im Backend-Editor verwendet wird, um den Anfang der Kommentarsammlung zu markieren.</description>-->
+            <!--<description lang="en">Hastag (a string) used in backend visual editor in order to mark the beginning of comment collection.</description>-->
+        <!--</element>-->
+
+        <element>
+            <name>layoutHashTag</name>
+            <label lang="de">WYSWIG-Editor Hashtag für Layout</label>
+            <label lang="en">WYSWIG-Editor hashtag for layout</label>
+            <value># Layout</value>
+            <description lang="de">Hastag (ein String), die im Backend-Editor verwendet wird, um das Ende der zuvor gestarteten Objektgruppe zu markieren.</description>
+            <description lang="en">Hastag (a string) used in backend visual editor to mark the end of the previously started items collection.</description>
+        </element>
+
+        <element>
+            <name>wysiwygEditorImageClass</name>
+            <label lang="en">WYSWIG-Editor object class for picture</label>
+            <label lang="de">WYSWIG-Editor Objektklass für Bild</label>
+            <value>tinymce-editor-image</value>
+            <description lang="de">Die Eigenschaft `class` eines DOM-Objekts, das im Knotenprozessor durch Methoden zur Inhaltserzeugung verwendet wird.</description>
+            <description lang="en">The `class` property of an DOM-object used in the node processor by content generation methods.</description>
+        </element>
+
+        <element>
+            <name>wysiwygEditorProductClass</name>
+            <label lang="en">WYSWIG-Editor object class for article</label>
+            <label lang="de">WYSWIG-Editor Objektklass für Artikel</label>
+            <value>tinymce-editor-product</value>
+            <description lang="de">Die Eigenschaft `class` eines DOM-Objekts, das im Knotenprozessor durch Methoden zur Inhaltserzeugung verwendet wird.</description>
+            <description lang="en">The `class` property of an DOM-object used in the node processor by content generation methods.</description>
+        </element>
+
+        <element>
+            <name>wysiwygEditorResponsiveClass</name>
+            <label lang="en">WYSWIG-Editor object class for URL picture</label>
+            <label lang="de">WYSWIG-Editor Objektklass für URL Bild</label>
+            <value>tinymce-editor-responsive</value>
+            <description lang="de">Die Eigenschaft `class` eines DOM-Objekts, das im Knotenprozessor durch Methoden zur Inhaltserzeugung verwendet wird.</description>
+            <description lang="en">The `class` property of an DOM-object used in the node processor by content generation methods.</description>
+        </element>
+
+        <element type="boolean">
+            <name>pluginDebugMode</name>
+            <label lang="en">Plugin in debug mode</label>
+            <label lang="de">Plugin in debug mode</label>
+            <value>false</value>
+            <description lang="de">Das Plugin hat an Debug-Snippets, `true` macht die Variablen zugänglich. Nicht bei der Produktion verwenden.</description>
+            <description lang="en">The plugin has debug snippets in various places, `true` will make the variables accessible. Do not use on production.</description>
+        </element>
+
+        <!--<element>-->
+        <!--<name>wysiwygEditorAllowableTags</name>-->
+        <!--<label lang="de">Backend-Editor Hashtag für Layout</label>-->
+        <!--<label lang="en">Backend editor hashtag for layout</label>-->
+        <!--<value><p><span><img><ol><ul><li><em><a></value>-->
+        <!--&lt;!&ndash;<value><p><span><img><ol><ul><li><em><a></value>&ndash;&gt;-->
+        <!--<description lang="de">Hastag (ein String), der im Backend-Editor verwendet wird, um den Anfang der Bildsammlung zu markieren.</description>-->
+        <!--<description lang="en">Hastag (a string) used in backend visual editor in order to mark the beginning of picture collection.</description>-->
+        <!--</element>-->
+    </elements>
+
+</config>
