@@ -25,7 +25,7 @@ class Shopware_Controllers_Backend_PhagResponsiveContentInjector extends Shopwar
         $this->validateBlogArticle();
 
         if(!$this->isBlogArticleValid) {
-            $this->View()->assign([
+            return $this->View()->assign([
                 'success' => false,
                 'message' => 'Syntax error.'
             ]);
