@@ -23,12 +23,12 @@ class PhagResponsiveContentInjector extends Plugin
      */
     public function install(Plugin\Context\InstallContext $installContext)
     {
-        parent::install($installContext);
         try {
             $this->createSchema();
         } catch (ToolsException $exception) {
             return;
         }
+        $installContext->scheduleClearCache(Plugin\Context\InstallContext::CACHE_LIST_ALL);
     }
 
     /**
@@ -38,9 +38,8 @@ class PhagResponsiveContentInjector extends Plugin
      */
     public function uninstall(Plugin\Context\UninstallContext $uninstallContext)
     {
-        parent::uninstall($uninstallContext);
-
         $this->removeSchema();
+        $uninstallContext->scheduleClearCache(Plugin\Context\InstallContext::CACHE_LIST_ALL);
     }
 
     /**

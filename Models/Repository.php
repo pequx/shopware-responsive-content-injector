@@ -126,6 +126,13 @@ class Repository extends ModelRepository
          */
         $this->finalVariables->wysiwygEditorXpath = '/html/body//img[contains(@class, "'.$this->config['wysiwygEditorResponsiveClass'].'")]'.
             '|/html/body//p[contains(@class, "'.$this->config['wysiwygEditorProductClass'].'")]';
+
+        /**
+         * List of allowed html tags to be used in processor and validator.
+         *
+         * @var string
+         */
+        $this->finalVariables->allowedHtmlTags = '<table><tr><td><caption><col><colgroup><table><tbody><td><th><tfoot><thead><div><p><span><strong><img><ol><ul><li><em><a><pre><code><h1><h2><h3><h4><h5><h6><dl><dt><hr><b><br><video>';
     }
 
     /**
@@ -361,7 +368,7 @@ class Repository extends ModelRepository
             $hasImageUrl = (bool)preg_match($this->finalVariables->urlPictureRegex, $node->nodeValue);
             $hasImage = $node->firstChild->nodeName === 'img';
 
-            $nextHasProduct = $nextNode->nodeValue && \strlen($nextNode->nodeValue) < 10 &&
+            $nextHasProduct = \strlen($nextNode->nodeValue) > 2 && \strlen($nextNode->nodeValue) < 10 &&
                 $nextNode->nodeValue !== $this->config['pictureHashTag'] &&
                 $nextNode->nodeValue !== $this->config['productHashTag'] &&
                 !(bool)preg_match($this->finalVariables->layoutIdRegex, $nextNode->nodeValue);
@@ -521,7 +528,9 @@ class Repository extends ModelRepository
     protected function checkEncoding(): bool
     {
         if (!$this->html) { return false; }
-        $this->html = strip_tags($this->html, '<div><p><span><img><ol><ul><li><em><a><pre><code><h1><h2><h3><h4><h5><h6>'); //@todo: move to config
+        $this->html = strip_tags($this->html, $this->finalVariables->allowedHtmlTags);
+        //@todo: move to config, but config doesn't work well with html tags
+
         $this->html = preg_replace('/\n/', '', $this->html);
         # first lambda function in my plugins ^^
         $this->html = preg_replace_callback(['/(%7B)(\S+)(%20|_)(\S+)(%7D)/'],

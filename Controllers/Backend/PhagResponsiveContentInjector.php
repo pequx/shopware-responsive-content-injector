@@ -32,6 +32,7 @@ class Shopware_Controllers_Backend_PhagResponsiveContentInjector extends Shopwar
         }
 
         try {
+            $response = $this->Response();
             $id = $this->Request()->getParam('id');
             $post = $this->Request()->getPost();
             if (!$id) { return; }
@@ -73,7 +74,10 @@ class Shopware_Controllers_Backend_PhagResponsiveContentInjector extends Shopwar
                 return;
             }
         }
-        $this->View()->assign(['success' => true, 'data' => $blog]);
+
+        $this->Request()->setDispatched(true);
+        $this->forward('saveBlogArticle', 'blog', 'backend');
+//        $this->View()->assign(['success' => true, 'data' => $blog]);
     }
 
     /**
@@ -88,6 +92,8 @@ class Shopware_Controllers_Backend_PhagResponsiveContentInjector extends Shopwar
 
         /** @var \PhagResponsiveContentInjector\Models\Repository $repository */
         $repository = $this->getRepository();
+
+        strip_tags($content, $repository->finalVariables->allowedHtmlTags);
 
         //Checks for any string which may match our hastags, but ignores twitter hashtags.
         $longestHashStringCount = 6;
