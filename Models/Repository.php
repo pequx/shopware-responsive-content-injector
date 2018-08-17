@@ -105,7 +105,8 @@ class Repository extends ModelRepository
         $this->finalVariables = new FinalVariable([
             'layoutIdRegex',
             'urlPictureRegex',
-            'wysiwygEditorXpath'
+            'wysiwygEditorXpath',
+            'allowedHtmlTags'
         ]);
 
         /**
@@ -672,7 +673,9 @@ class Repository extends ModelRepository
                 //@todo: check how mixed node types works here, eg. prodcuts with pictures.
             }
             if ($isImage) {
-                $items[] = $element->getAttribute('data-src');
+                $path = $element->getAttribute('data-src');
+                $mediaService = Shopware()->Container()->get('shopware_media.media_service');
+                $items[] = $mediaService->getUrl($path);
                 $type = 1;
             }
             if ($isProduct) {
