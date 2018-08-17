@@ -35,26 +35,25 @@ class Shopware_Controllers_Backend_PhagResponsiveContentInjector extends Shopwar
             $response = $this->Response();
             $id = $this->Request()->getParam('id');
             $post = $this->Request()->getPost();
-            if (!$id) { return; }
+            if (!$post) { return; }
 
-            $blog = $this->getBlog($id);
-            if (!$blog['success']) { return; }
-
-            /** @var array  $content */
-            $content = $this->getModelManager()->createQueryBuilder()
-                ->select('content')
-                ->from(PhagResponsiveContentInjector::class, 'content')
-                ->where('content.lastParent = :blog')
-                ->setParameter('blog', $blog['result'])
-                ->getQuery()
-                ->getResult(AbstractQuery::HYDRATE_OBJECT);
+            if ($id) { //if blog exists
+                $blog = $this->getBlog($id);
+                /** @var array  $content */
+                $content = $this->getModelManager()->createQueryBuilder()
+                    ->select('content')
+                    ->from(PhagResponsiveContentInjector::class, 'content')
+                    ->where('content.lastParent = :blog')
+                    ->setParameter('blog', $blog['result'])
+                    ->getQuery()
+                    ->getResult(AbstractQuery::HYDRATE_OBJECT);
+            }
         } catch (Exception $exception) {
             return;
         }
 
         $isContent = count($content) > 0;
         if(!$isContent) {
-//            return $this->View()->assign(['success' => true, 'data' => $blog['result']]);
             $this->Request()->setDispatched(true);
             $this->forward('saveBlogArticle', 'blog', 'backend');
         }

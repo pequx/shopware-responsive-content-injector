@@ -33,8 +33,7 @@ class Frontend implements SubscriberInterface
         if (!$isBlogDetailAction) { return; }
 
         $controller->forward(
-            'blogDetail', PhagResponsiveContentInjector::NAME, 'widgets',
-            [
+            'blogDetail', PhagResponsiveContentInjector::NAME, 'widgets', [
                 'assigns' => $assigns,
             ]
         );

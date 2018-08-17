@@ -38,5 +38,4 @@ class Backend implements SubscriberInterface
     {
         return $request->getControllerName() ==='Blog' && $request->getActionName() === 'saveBlogArticle';
     }
-
 }

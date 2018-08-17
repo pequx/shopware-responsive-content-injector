@@ -9,7 +9,6 @@ Ext.define('Shopware.apps.PhagResponsiveContentInjector.model.Main', {
         };
     },
 
-
     fields: [
         { name : 'id', type: 'int', useNull: true },
         { name : 'name', type: 'string', useNull: false }
