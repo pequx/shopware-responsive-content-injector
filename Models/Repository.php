@@ -78,6 +78,8 @@ class Repository extends ModelRepository
      */
     protected $productProvider;
 
+    protected $mediaService;
+
     /**
      * Final variables container, used for testing and for upcoming features.
      * @var FinalVariable
@@ -98,6 +100,7 @@ class Repository extends ModelRepository
             $this->productService = Shopware()->Container()->get('shopware_storefront.product_service');
             $this->contextService = Shopware()->Container()->get('shopware_storefront.context_service');
             $this->productProvider = Shopware()->Container()->get('shopware_elastic_search.product_provider');
+            $this->mediaService = Shopware()->Container()->get('shopware_media.media_service');
         } catch (\Exception $exception) {
             return;
         }
@@ -119,7 +122,7 @@ class Repository extends ModelRepository
          * Describes the url string match with a piture link.
          * @var string
          */
-        $this->finalVariables->urlPictureRegex = '/^(http:\/\/|https:\/\/)\S+(jpg|gif|png|jpeg)$/';
+        $this->finalVariables->urlPictureRegex = '/^(http:\/\/|https:\/\/)\S+(jpg|gif|png|jpeg|JPG|GIF|PNG|JPEG)$/';
 
         /**
          * Describes string match for source html.
@@ -674,8 +677,7 @@ class Repository extends ModelRepository
             }
             if ($isImage) {
                 $path = $element->getAttribute('data-src');
-                $mediaService = Shopware()->Container()->get('shopware_media.media_service');
-                $items[] = $mediaService->getUrl($path);
+                $items[] = $this->mediaService->getUrl($path);
                 $type = 1;
             }
             if ($isProduct) {

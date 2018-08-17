@@ -4,7 +4,7 @@
             {if $type eq 0 or $type eq 1}
                 {if $items|@count eq 1}
                     <div class="grid-12">
-                        <img class="scale" src="{if $type eq 1}{$items[0]}{else}{media path=$items[0]}{/if}">
+                        <img class="scale" src="{$items[0]}">
                         {if $debug eq true}
                             <pre><code>index {$smarty.section.item.index} | item {$items[0]}</code></pre>
                         {/if}
@@ -12,7 +12,7 @@
                 {elseif $items|@count eq 2}
                     {section name=item loop=$items}
                         <div class="grid-6">
-                            <img class="scale" src="{if $type eq 1}{$items[item]}{else}{media path=$items[item]}{/if}">
+                            <img class="scale" src="{$items[item]}">
                             {if $debug eq true}
                                 <pre><code>index {$smarty.section.item.index} | path {$items[item]}</code></pre>
                             {/if}
@@ -21,7 +21,7 @@
                 {else}
                     {section name=item loop=$items}
                         <div class="{if $smarty.section.item.index % 3 eq 0}grid-12{else}grid-6{/if}">
-                            <img class="scale" src="{if $type eq 1}{$items[item]}{else}{media path=$items[item]}{/if}">
+                            <img class="scale" src="{$items[item]}">
                             {if $debug eq true}
                                 <pre><code>index {$smarty.section.item.index} | path {$items[item]}</code></pre>
                             {/if}
