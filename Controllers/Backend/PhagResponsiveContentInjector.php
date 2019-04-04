@@ -79,6 +79,11 @@ class Shopware_Controllers_Backend_PhagResponsiveContentInjector extends Shopwar
 //        $this->View()->assign(['success' => true, 'data' => $blog]);
     }
 
+    public function deleteBlogArticleAction()
+    {
+        $id = $this->Request()->getParam('id');
+    }
+
     /**
      * Helper method to validate if the gui editor syntax is correct.
      */

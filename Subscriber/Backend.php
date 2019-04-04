@@ -23,19 +23,21 @@ class Backend implements SubscriberInterface
         /** @var \Enlight_Controller_Request_Request $request */
         $request = $controller->Request();
 
-        if (!$this->isSaveBlogArticleAction($request)) { return; }
+        $isSaveBlogArticleAction = $request->getControllerName() === 'Blog' && $request->getActionName() === 'saveBlogArticle';
+        $isDeleteBlogArticleAction = $request->getControllerName() === 'Blog' && $request->getActionName() === 'deleteBlogArticle';
 
-        $controller->forward(
-            'saveBlogArticle', 'phagResponsiveContentInjector', 'backend'
-        );
-    }
+        if ($isSaveBlogArticleAction) {
+            $controller->forward(
+                'saveBlogArticle', 'phagResponsiveContentInjector', 'backend'
+            );
+        }
 
-    /**
-     * @param \Enlight_Controller_Request_Request $request
-     * @return bool
-     */
-    protected function isSaveBlogArticleAction(\Enlight_Controller_Request_Request $request): bool
-    {
-        return $request->getControllerName() ==='Blog' && $request->getActionName() === 'saveBlogArticle';
+        if ($isDeleteBlogArticleAction) {
+            $controller->forward(
+                'deleteBlogArticle', 'phagResponsiveContentInjector', 'backend'
+            );
+        }
+
+        return;
     }
 }
