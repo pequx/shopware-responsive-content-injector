@@ -5,7 +5,7 @@ $finder = PhpCsFixer\Finder::create()
 ;
 
 $header = <<<EOF
-(c) PerfectHair AG <maciej.piernikowski@perfecthair.ag>
+(c) https://github.com/pequx/
 
 For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
